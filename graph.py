@@ -1,5 +1,7 @@
-
-rt numpy as np
+# major use of http://datadebrief.blogspot.com/2010/10/plotting-sunrise-sunset-times-in-python.html
+# major use of http://stackoverflow.com/questions/5498510/creating-graph-with-date-and-time-in-axis-labels-with-matplotlib
+# inspiration from http://stackoverflow.com/questions/886716/controling-bars-width-in-matplotlib-with-per-month-data
+import numpy as np
 from matplotlib import pyplot as plt
 from matplotlib import dates
 import datetime
@@ -9,7 +11,7 @@ from matplotlib.ticker import FuncFormatter as ff
 #date,init time,end time,elapsed time
 #3/6/2013,4:30:00,8:45:00,4:15:00
 
-data = genfromtxt('/home/nrw/Dropbox/projects/sleepgraph/data.csv', delimiter=",", skiprows=1, dtype='string')
+data = genfromtxt('data.csv', delimiter=",", skiprows=1, dtype='string')
 print data[1]
 
 day = data[:,0]
@@ -50,8 +52,7 @@ hfmt = dates.DateFormatter('%b %d')
 ax.xaxis.set_major_formatter(hfmt)
 ax.xaxis.set_major_locator(MultipleLocator(1.0)) #a tick mark a day
 
-
+ax.set_ylim([0, 24*60])
 ax.yaxis.set_major_formatter(ff(m2hm))
 ax.yaxis.set_major_locator(pylab.MultipleLocator(60)) #a tick mark an hour
      
-
